@@ -1,17 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{product.name}}
-    {{product.slug}}
-    {{product.image}}
-    {{product.description}}
-    {{product.stock}}
-    {{product.available}}
-</body>
-</html>
+D A, [4/25/22 4:44 PM]
+{% extends 'base.html' %}
+{% block content%}
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-4">
+        <div class="card text-black">
+          <img src="{{product.image.url }}"
+            class="card-img-top" alt="Apple Computer" />
+          <div class="card-body">
+            <div class="text-center">
+              <h5 class="card-title">Description</h5>
+              <p class="text-muted mb-4">{{product.description}}</p>
+            </div>
+            <div>
+              <div class="d-flex justify-content-between">
+                <span>Name</span><span>{{product.name}}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span>Category</span><span>{{product.category}}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span>Stock</span><span>{{product.stock}}</span>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between total font-weight-bold mt-4">
+              <span>Price</span><span>${{product.price}}</span>
+            </div>
+			  <div class="d-flex justify-content-between total font-weight-bold mt-4">
+              <button type="button" class="btn btn-success">Update</button>
+              <a href="{% url 'shop:delete_product' product.slug %}"><button type="button" class="btn btn-danger">Delete</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
